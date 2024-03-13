@@ -1,0 +1,15 @@
+<html>
+  
+  <%- include('./head.ejs') %>
+
+  <body>
+    <h1>Lista de personas</h1> 
+    <ul>
+        <% personas.forEach(element => { %>
+            <li>
+                <%= element.nombre, " ", element.email, " ", element.denominacion %>
+            </li>
+        <% }) %>
+    </ul>
+  </body>
+</html>

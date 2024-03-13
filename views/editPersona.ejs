@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  
+    <%- include('./head.ejs') %>
+  
+    <body>
+    <h1>Editar item</h1> 
+    <form action="/updatePersona/<%= item.id %>" method="post">
+    <input type="text" name="nombre" value="<%= item.nombre %>" required>
+    <input type="email" name="email" value="<%= item.email %>" required>
+    <input type="number" name="oficina_id" value="<%= item.oficina_id %>" required>
+    <button type="submit">Update</button>
+    </form>
+  </body>
+</html>
