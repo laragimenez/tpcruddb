@@ -96,6 +96,97 @@ const buscarPersonaResultados = (req, res, next) => {
   });
 };
 
+const listOficina= (req, res, next) => {
+    const db = req.app.get("db"); //para llamar la bd que creamos en app.js y conectarnos
+    const query = "SELECT * from oficina"; // seleccion en la tabla persona
+    db.query(query, function(err, rows){ //llama a la bd selecciona todos los elementos, se crea una funcion con 2 parametros err(error) y rows(filas)
+    if(err){
+      console.log(err);
+      return;
+    } 
+    res.render("oficinas", {oficinas:rows, title:"Lista de la oficina"}); //creo un objeto oficina y devuelvo filas
+    });
+  };
+  
+  const agregarOficina= (req, res, next) => {
+    res.render('agregarOficina', {title:"Agregar oficina"});
+  };
+  
+  const postAgregarOficina= (req,res,next) => {
+    const db = req.app.get("db");
+    const denominacion =req.body.denominacion;
+    const query = "INSERT into oficina(denominacion) VALUES (?)";
+    db.query(query, [denominacion], function(err){
+      if(err){
+        console.log(err);
+        return;
+      }
+      res.redirect("/oficinas");
+    });
+  };
+  
+  const getEditarOficina = (req, res, next) => {
+    var db = req.app.get('db');
+    var id = req.params.id;
+    db.query("SELECT * FROM oficina WHERE id= (?)", [id], function(err, row){
+      if(err){
+        console.error(err);
+        return;
+    }
+      res.render('editOficina', {item: row[0], title:"Editar oficina"});
+    });
+  };
+  
+  const postUpdateOficina = (req, res, next) => {
+    var db = req.app.get('db');
+    var id = req.params.id;
+    var denominacion = req.body.denominacion;
+    db.query("UPDATE oficina SET denominacion=? WHERE id=?", [denominacion , id], function(err) {
+    if (err) {
+        console.error(err);
+        return;
+    }
+    res.redirect('/oficinas');
+    });
+  };
+  
+  const getDeleteOficina = (req, res, next) => {
+    var db = req.app.get('db');
+    var id = req.params.id;
+    db.query("SELECT * FROM oficina WHERE id=?", id, function(err, rows) {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        res.render('borrarOficina', { item: rows[0], title: "Borrar" });
+    });
+  }
+  
+  const postDeleteOficina = function(req, res, next) {
+    var db = req.app.get('db');
+    var id = req.params.id;
+    db.query("DELETE FROM oficina WHERE id=?", id, function(err) {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        res.redirect('/oficinas');
+    });
+  };
+  
+  const buscarOficina = (req,res, next) => {
+    res.render('busquedaOficina',  {title: "Buscar"});
+  };
+  
+  const buscarOficinaResultados = (req, res, next) => {
+    var db= req.app.get("db");
+    var keyword = req.body.keyword;
+    const query = 'SELECT * FROM oficina WHERE denominacion LIKE ?'; 
+    db.query(query, [`%${keyword}`], (err, rows) => {
+      if(err) throw err;
+      res.render('resultadosOficina', {oficinas: rows, title: "Resultados"})
+    });
+  };
 
 module.exports = { //nos permite hacer referencia en otros archivos
     listPersona,
@@ -106,5 +197,15 @@ module.exports = { //nos permite hacer referencia en otros archivos
     getDeletePersona,
     postDeletePersona,
     buscarPersona,
-    buscarPersonaResultados
+    buscarPersonaResultados,
+
+    listOficina,
+    agregarOficina,
+    postAgregarOficina,
+    getEditarOficina,
+    postUpdateOficina,
+    getDeleteOficina,
+    postDeleteOficina,
+    buscarOficina,
+    buscarOficinaResultados
 }

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  
+  <%- include('./head.ejs') %>
+
+  <body>
+    <h1>Lista de oficina</h1> 
+    <ul>
+        <% oficinas.forEach(element => { %>
+            <li>
+                <%= element.id, " " ,element.denominacion %>
+            </li>
+        <% }) %>
+    </ul>
+  </body>
+</html>

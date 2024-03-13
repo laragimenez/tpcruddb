@@ -95,7 +95,8 @@ Permite utilizar html para la creación de las plantillas.
 Javascript diseñado para la creación de interfaces limpias y con un diseño responsive.
 
 ### Versionado 📌
-Para todas las versiones disponibles, los tags del repositorio son los siguientes: 
+Para todas las versiones disponibles, los tags del repositorio son los siguientes:  
+https://github.com/laragimenez/tpcruddb/tags
 
 ### Explicación de los archivos
 
