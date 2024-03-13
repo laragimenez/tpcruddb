@@ -9,9 +9,12 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+var db = require('./db');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.set("db", db) //para vincular a la var db con la app
 
 app.use(logger('dev'));
 app.use(express.json());
