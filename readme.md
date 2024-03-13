@@ -170,5 +170,5 @@ La carpeta _node modules_ tiene todas las dependencias de la aplicación.
 ## contacto
 
 - Gmail: laragimenez@itscordoba.edu.ar
-- Nombre de usuario gitlab: laragimenez
+- Nombre de usuario github: laragimenez
 Repositorio: https://github.com/laragimenez/tpcruddb
