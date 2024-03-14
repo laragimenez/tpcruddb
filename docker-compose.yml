@@ -2,9 +2,9 @@ version: '3.1'
 
 services:
 
-  db:
-    image: mysql:8.0
-    container_name: mysql-contenedorcrud
+  mysql: #servicio mysql
+    image: mysql:8.0 #imagen
+    container_name: mysql-contenedorcrud #nombre contenedor
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 1234
@@ -13,7 +13,18 @@ services:
     ports:
       - 3001:3001
     networks:
-      - my_network
+      - my_network #una red del contenedor de la aplicacion
+
+  #servicio de la app Node.js
+  node_app:
+    image: laragimenez/crudnodejs:1.0
+    container_name: mi_app_node #nombre del contenedor
+    ports:
+      - "3000:3000" 
+    depends_on:
+      - mysql # nuestra app dependa del servicio de mysql
+    networks:
+      - my_network #una red conecta con mysql
     
 volumes:
   mysql-volume:
