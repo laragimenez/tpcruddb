@@ -5,35 +5,35 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('tpcruddb:server');
+var debug = require('debug')('tpcruddb:server'); //carga el modulo de la consola
 var http = require('http');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+var port = normalizePort(process.env.PORT || '3000'); //Normaliza en valor del puerto, se fija si el s.o no utiliza este puerto, si no es asi le dice 3000
+app.set('port', port); //setea el puerto por 3000 de la app
 
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+var server = http.createServer(app); //crea un servicio para la app
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+server.listen(port); //escucha peticiones
+server.on('error', onError); //manejador de error
+server.on('listening', onListening); //manejador de escucha
 
 /**
  * Normalize a port into a number, string, or false.
  */
 
-function normalizePort(val) {
+function normalizePort(val) { //normaliza el puerto
   var port = parseInt(val, 10);
 
   if (isNaN(port)) {
@@ -53,7 +53,7 @@ function normalizePort(val) {
  * Event listener for HTTP server "error" event.
  */
 
-function onError(error) {
+function onError(error) { 
   if (error.syscall !== 'listen') {
     throw error;
   }

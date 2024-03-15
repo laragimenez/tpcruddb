@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   
-    <%- include('./head.ejs') %>
+  <%- include('./head.ejs') %>
   
-    <body>
+  <body>
     <h1>Editar item</h1> 
     <form action="/updatePersona/<%= item.id %>" method="post">
     <input type="text" name="nombre" value="<%= item.nombre %>" required>

@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express'); //carga modulo express
+var router = express.Router(); //crea un nuevo objeto de enrutador
 var controllers = require('../controllers/controllers') // ../ para que se salga del index.js e ingrese a la carpeta y archivo controllers
 
 /* GET home page. */
